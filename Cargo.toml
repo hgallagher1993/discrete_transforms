@@ -9,5 +9,4 @@ homepage = "https://github.com/hgallagher1993/discrete_transforms"
 readme = "README.md"
 
 [dependencies]
-num-traits = "*"
-stream-dct = "0.1.0"
+num-traits = "0.2.6"

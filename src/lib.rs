@@ -1,5 +1,4 @@
 extern crate num_traits;
-extern crate stream_dct;
 
 use std::f64;
 use num_traits::float::Float;
