@@ -1,0 +1,8 @@
+[package]
+name = "discrete_transforms"
+version = "0.1.0"
+authors = ["hgallagher1993 <hgallagher1993@gmail.com>"]
+
+[dependencies]
+num-traits = "*"
+stream-dct = "0.1.0"
