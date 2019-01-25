@@ -1,7 +1,7 @@
 use std::f64;
 use num_traits::float::Float;
 
-fn dct(input: Vec<Vec<u8>>) -> Vec<f64> {
+pub fn dct(input: Vec<Vec<u8>>) -> Vec<f64> {
     let mut coefficients: Vec<f64> = Vec::new();
     let pi = f64::consts::PI;
 
