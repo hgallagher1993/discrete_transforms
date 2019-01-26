@@ -1,6 +1,6 @@
 use std::f64;
 
-pub fn forward(input: Vec<u8>) -> Vec<f64> {
+pub fn forward(input: &Vec<u8>) -> Vec<f64> {
     let mut output: Vec<f64> = input.iter().map(|x| *x as f64).collect();
     let mut output_temp = vec![0.0; 8];
 
@@ -25,8 +25,8 @@ pub fn forward(input: Vec<u8>) -> Vec<f64> {
     output
 }
 
-pub fn inverse(input: Vec<f64>) -> Vec<u8> {
-    let mut input = input;
+pub fn inverse(input: &Vec<f64>) -> Vec<u8> {
+    let mut input = input.clone();
     let mut length = 2;
 
     for _ in 0..3 {
@@ -60,7 +60,7 @@ fn haar_1d_forward_test() {
     let input = vec![6, 12, 15, 15, 14, 12, 120, 116];
     let expected = vec![38.75, -26.75, -3.0, -52.5, -3.0, 0.0, 1.0, 2.0];
 
-    let forward = forward(input);
+    let forward = forward(&input);
 
     assert_eq!(forward, expected);
 }
@@ -70,7 +70,7 @@ fn haar_1d_inverse_test() {
     let input = vec![38.75, -26.75, -3.0, -52.5, -3.0, 0.0, 1.0, 2.0];
     let expected = vec![6, 12, 15, 15, 14, 12, 120, 116];
 
-    let inverse = inverse(input);
+    let inverse = inverse(&input);
 
     assert_eq!(expected, inverse);
 }
