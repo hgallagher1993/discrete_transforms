@@ -1,6 +1,6 @@
 use std::f64;
 
-fn forward(input: Vec<u8>) -> Vec<f64> {
+pub fn forward(input: Vec<u8>) -> Vec<f64> {
     let mut output: Vec<f64> = input.iter().map(|x| *x as f64).collect();
     let mut output_temp = vec![0.0; 8];
 
@@ -25,7 +25,7 @@ fn forward(input: Vec<u8>) -> Vec<f64> {
     output
 }
 
-fn inverse(input: Vec<f64>) -> Vec<u8> {
+pub fn inverse(input: Vec<f64>) -> Vec<u8> {
     let mut input = input;
     let mut length = 2;
 
