@@ -1,15 +1,15 @@
 use std::f64;
 
-pub fn forward(input: &Vec<u8>) -> Vec<f64> {
-    let mut output: Vec<f64> = input.iter().map(|x| *x as f64).collect();
+pub fn forward(input: &Vec<f64>) -> Vec<f64> {
+    let mut output: Vec<f64> = input.clone();
     let mut output_temp = vec![0.0; 8];
 
     let mut length = input.len() / 2;
 
     for _ in 0..3 {
         for k in 0..length {
-            let average = (output[k * 2] + output[k * 2 + 1]) as f64 / 2.0;
-            let difference = output[k * 2] as f64 - average;
+            let average = (output[k * 2] + output[k * 2 + 1]) / 2.0;
+            let difference = output[k * 2] - average;
 
             output_temp[k] = average;
             output_temp[k + length] = difference;
@@ -25,13 +25,13 @@ pub fn forward(input: &Vec<u8>) -> Vec<f64> {
     output
 }
 
-pub fn inverse(input: &Vec<f64>) -> Vec<u8> {
-    let mut input = input.clone();
+pub fn inverse(input: &Vec<f64>) -> Vec<f64> {
+    let mut output = input.clone();
     let mut length = 2;
 
     for _ in 0..3 {
         let mut output_temp = Vec::new();
-        let mut temp: Vec<f64> = input.iter().take(length).cloned().collect();
+        let mut temp: Vec<f64> = output.iter().take(length).cloned().collect();
 
         for k in 0..length / 2 {
             let (mut s, mut d) =  temp.split_at(length / 2);
@@ -44,20 +44,18 @@ pub fn inverse(input: &Vec<f64>) -> Vec<u8> {
         }
 
         for y in 0..output_temp.len() {
-            input[y] = output_temp[y];
+            output[y] = output_temp[y];
         }
 
         length *= 2;
     }
-
-    let output = input.iter().map(|x| *x as u8).collect();
 
     output
 }
 
 #[test]
 fn haar_1d_forward_test() {
-    let input = vec![6, 12, 15, 15, 14, 12, 120, 116];
+    let input = vec![6.0, 12.0, 15.0, 15.0, 14.0, 12.0, 120.0, 116.0];
     let expected = vec![38.75, -26.75, -3.0, -52.5, -3.0, 0.0, 1.0, 2.0];
 
     let forward = forward(&input);
@@ -68,7 +66,7 @@ fn haar_1d_forward_test() {
 #[test]
 fn haar_1d_inverse_test() {
     let input = vec![38.75, -26.75, -3.0, -52.5, -3.0, 0.0, 1.0, 2.0];
-    let expected = vec![6, 12, 15, 15, 14, 12, 120, 116];
+    let expected = vec![6.0, 12.0, 15.0, 15.0, 14.0, 12.0, 120.0, 116.0];
 
     let inverse = inverse(&input);
 
