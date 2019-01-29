@@ -10,3 +10,4 @@ readme = "README.md"
 
 [dependencies]
 num-traits = "0.2.6"
+itertools = "0.8.0"
