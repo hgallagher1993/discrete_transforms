@@ -47,7 +47,7 @@ pub fn inverse(input: &Vec<f64>) -> Vec<f64> {
 
         output_temp /= 2.0;
 
-        output.push(output_temp.round());
+        output.push(output_temp);
     }
 
     output
@@ -72,7 +72,11 @@ fn dct_1d_inverse_test() {
                      -0.3690851952774956, -0.018709851025652924];
     let expected = vec![139.0, 144.0, 149.0, 153.0, 155.0, 155.0, 155.0, 155.0];
 
-    let inverse = inverse(&input);
+    let mut inverse = inverse(&input);
+
+    for x in 0..8 {
+        inverse[x] = inverse[x].round();
+    }
 
     assert_eq!(inverse, expected);
 }
