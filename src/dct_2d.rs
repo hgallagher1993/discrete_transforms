@@ -1,8 +1,6 @@
 use dct_1d;
 use std::f64;
-use num_traits::float::Float;
 use itertools::Itertools;
-
 
 pub fn forward(input: &Vec<f64>) -> Vec<f64> {
     let mut coefficients: Vec<f64> = Vec::new();
