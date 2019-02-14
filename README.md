@@ -22,7 +22,7 @@ let haar_forward = Transform::new(input, TransformType::HaarForward).transform()
 let haar_inverse = Transform::new(input, TransformType::HaarInverse).transform();
 ```
 
-#Problems / Things that need fixing:
+# Problems / Things that need fixing:
 * 2D Transforms only work on 8x8 blocks, block size should be user defined.
 * 1D and 2D Haar transforms default to a step size of 3
 * This needs to be read and changes made based on it https://rust-lang-nursery.github.io/api-guidelines/about.html
