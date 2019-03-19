@@ -9,7 +9,11 @@ fn dct_1d_forward_test() {
                         -2.080834053102315, -0.3535533905932624, -0.4669834002898554,
                         -0.3690851952774956, -0.018709851025652924];
 
-    let forward = forward(&input);
+    let mut dct_1d = Dct1d::new();
+
+    dct_1d.set_input(input);
+
+    let forward = dct_1d.forward();
 
     assert_eq!(forward, expected);
 }
@@ -21,7 +25,11 @@ fn dct_1d_inverse_test() {
                      -0.3690851952774956, -0.018709851025652924];
     let expected = vec![139.0, 144.0, 149.0, 153.0, 155.0, 155.0, 155.0, 155.0];
 
-    let mut inverse = inverse(&input);
+    let mut dct_1d = Dct1d::new();
+
+    dct_1d.set_input(input);
+
+    let mut inverse = dct_1d.inverse();
 
     for x in 0..8 {
         inverse[x] = inverse[x].round();

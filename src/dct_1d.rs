@@ -1,40 +1,35 @@
 use std::f64;
 use num_traits::float::Float;
+use std::fmt::Debug;
 
-pub fn forward(input: &Vec<f64>) -> Vec<f64> {
-    let pi = f64::consts::PI;
-    let mut output = Vec::new();
-
-    for u in 0..8 {
-        let mut coefficient = 0.0;
-
-        for x in 0..8 {
-            coefficient += input[x] * (u as f64 * pi / 16.0 * (2.0 * x as f64 + 1.0)).cos();
-        }
-
-        let cu = if u == 0 {
-            1.0 / 2.0.sqrt()
-        }
-        else {
-            1.0
-        };
-
-        coefficient = coefficient / 2.0 * cu;
-
-        output.push(coefficient);
-    }
-
-    output
+pub struct Dct1d {
+    input: Vec<f64>
 }
 
-pub fn inverse(input: &Vec<f64>) -> Vec<f64> {
-    let pi = f64::consts::PI;
-    let mut output = Vec::new();
+impl Dct1d {
+    pub fn new() -> Dct1d {
+        Dct1d {
+            input: vec![]
+        }
+    }
 
-    for x in 0..8 {
-        let mut output_temp = 0.0;
+    pub fn set_input(&mut self, input: Vec<f64>) -> &mut Self {
+        self.input = input;
+
+        self
+    }
+
+    pub fn forward(&mut self) -> Vec<f64> {
+        let pi = f64::consts::PI;
+        let mut output: Vec<f64> = Vec::new();
 
         for u in 0..8 {
+            let mut coefficient: f64 = 0.0;
+
+            for x in 0..8 {
+                coefficient += self.input[x] * (u as f64 * pi / 16.0 * (2.0 * x as f64 + 1.0)).cos();
+            }
+
             let cu = if u == 0 {
                 1.0 / 2.0.sqrt()
             }
@@ -42,13 +37,38 @@ pub fn inverse(input: &Vec<f64>) -> Vec<f64> {
                 1.0
             };
 
-            output_temp += (u as f64 * pi / 16.0 * (2.0 * x as f64 + 1.0)).cos() * input[u] * cu;
+            coefficient = coefficient / 2.0 * cu;
+
+            output.push(coefficient);
         }
 
-        output_temp /= 2.0;
-
-        output.push(output_temp);
+        output
     }
 
-    output
+    pub fn inverse(&mut self) -> Vec<f64> {
+        let pi = f64::consts::PI;
+        let mut output: Vec<f64> = Vec::new();
+
+        for x in 0..8 {
+            let mut output_temp: f64 = 0.0;
+
+            for u in 0..8 {
+                let cu = if u == 0 {
+                    1.0 / 2.0.sqrt()
+                }
+                else {
+                    1.0
+                };
+
+                output_temp += (u as f64 * pi / 16.0 * (2.0 * x as f64 + 1.0)).cos() * self.input[u] * cu;
+            }
+
+            output_temp /= 2.0;
+
+            output.push(output_temp);
+        }
+
+        output
+    }
+
 }

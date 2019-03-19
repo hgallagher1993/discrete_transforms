@@ -1,6 +1,6 @@
 extern crate discrete_transforms;
 
-use discrete_transforms::transforms_2d::*;
+use discrete_transforms::haar_2d::*;
 
 #[test]
 fn haar_2d_forward_test() {
@@ -22,9 +22,14 @@ fn haar_2d_forward_test() {
                         -0.375,     0.125,    -0.5,      0.5,    -0.25,  -0.25,    1.0,   0.0,
                         -0.125,     0.375,    -0.25,     0.0,     0.0,   -0.5,     0.0,   0.0];
 
-    let haar_forward = Transform::new(input, TransformType::HaarForward).transform();
+    let mut haar_2d = Haar2D::new();
 
-    assert_eq!(haar_forward, expected);
+    haar_2d.set_input(input);
+
+    let forward = haar_2d.forward();
+
+
+    assert_eq!(forward, expected);
 }
 
 #[test]
@@ -47,7 +52,11 @@ fn haar_2d_inverse_test() {
                         162.0, 162.0, 161.0, 163.0, 162.0, 157.0, 157.0, 157.0,
                         162.0, 162.0, 161.0, 161.0, 163.0, 158.0, 158.0, 158.0];
 
-    let haar_inverse = Transform::new(input, TransformType::HaarInverse).transform();
+    let mut haar_2d = Haar2D::new();
 
-    assert_eq!(haar_inverse, expected);
+    haar_2d.set_input(input);
+
+    let inverse = haar_2d.inverse();
+
+    assert_eq!(inverse, expected);
 }

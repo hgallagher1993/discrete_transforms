@@ -1,6 +1,6 @@
 extern crate discrete_transforms;
 
-use discrete_transforms::transforms_2d::*;
+use discrete_transforms::dct_2d::*;
 
 #[test]
 fn dct_2d_forward_test() {
@@ -22,9 +22,13 @@ fn dct_2d_forward_test() {
                         -1.2825244507344138, -0.3599527941914801, -0.31694173824158023, -1.4600985413244758, -0.4899611118286471, 1.734842538986418, 1.0758252147247698, -0.7613475106449024,
                         -2.5998987210929343, 1.551852887620423, -3.762776290221531, -1.8447577060244742, 1.8716168796703228, 1.213945210222894, -0.567884993512257, -0.44564003753785386];
 
-    let dct_forward = Transform::new(input, TransformType::DctForward).transform();
+    let mut dct_2d = Dct2D::new();
 
-    assert_eq!(dct_forward, expected);
+    dct_2d.set_input(input);
+
+    let forward = dct_2d.forward();
+
+    assert_eq!(forward, expected);
 }
 
 #[test]
@@ -47,13 +51,17 @@ fn dct_2d_inverse_test() {
                         162.0, 162.0, 161.0, 163.0, 162.0, 157.0, 157.0, 157.0,
                         162.0, 162.0, 161.0, 161.0, 163.0, 158.0, 158.0, 158.0];
 
-    let mut dct_inverse = Transform::new(input, TransformType::DctInverse).transform();
+    let mut dct_2d = Dct2D::new();
+
+    dct_2d.set_input(input);
+
+    let mut inverse = dct_2d.inverse();
 
     for x in 0..8 {
         for y in 0..8 {
-            dct_inverse[x * 8 + y] = dct_inverse[x * 8 + y].round();
+            inverse[x * 8 + y] = inverse[x * 8 + y].round();
         }
     }
 
-    assert_eq!(dct_inverse, expected)
+    assert_eq!(inverse, expected)
 }
