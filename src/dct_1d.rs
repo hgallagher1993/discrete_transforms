@@ -1,5 +1,6 @@
 use std::f64;
 use num_traits::float::Float;
+use util::TransformDirections;
 
 #[derive(Debug)]
 pub struct Dct1D {
@@ -18,8 +19,10 @@ impl Dct1D {
 
         self
     }
+}
 
-    pub fn forward(&mut self) -> Vec<f64> {
+impl TransformDirections for Dct1D {
+    fn forward(&self) -> Vec<f64> {
         let pi = f64::consts::PI;
         let mut output: Vec<f64> = Vec::new();
 
@@ -45,7 +48,7 @@ impl Dct1D {
         output
     }
 
-    pub fn inverse(&mut self) -> Vec<f64> {
+    fn inverse(&self) -> Vec<f64> {
         let pi = f64::consts::PI;
         let mut output: Vec<f64> = Vec::new();
 
@@ -70,5 +73,4 @@ impl Dct1D {
 
         output
     }
-
 }

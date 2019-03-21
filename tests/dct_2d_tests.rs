@@ -1,6 +1,7 @@
 extern crate discrete_transforms;
 
 use discrete_transforms::dct_2d::*;
+use discrete_transforms::util::TransformDirections;
 
 #[test]
 fn dct_2d_forward_test() {

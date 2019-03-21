@@ -1,5 +1,5 @@
 use dct_1d::*;
-use util::*;
+use util::{TransformDirection, TransformDirections};
 use itertools::Itertools;
 
 #[derive(Debug)]
@@ -19,8 +19,10 @@ impl Dct2D {
 
         self
     }
+}
 
-    pub fn forward(&self) -> Vec<f64> {
+impl TransformDirections for Dct2D {
+    fn forward(&self) -> Vec<f64> {
         let input = self.input.clone();
 
         let direction = TransformDirection::Forward;
@@ -30,7 +32,7 @@ impl Dct2D {
         output
     }
 
-    pub fn inverse(&self) -> Vec<f64> {
+    fn inverse(&self) -> Vec<f64> {
         let input = self.input.clone();
 
         let direction = TransformDirection::Inverse;

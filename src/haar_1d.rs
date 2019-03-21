@@ -1,4 +1,5 @@
 use std::f64;
+use util::TransformDirections;
 
 #[derive(Debug)]
 pub struct Haar1D {
@@ -17,8 +18,10 @@ impl Haar1D {
 
         self
     }
+}
 
-    pub fn forward(&mut self) -> Vec<f64> {
+impl TransformDirections for Haar1D {
+    fn forward(&self) -> Vec<f64> {
         let mut output: Vec<f64> = self.input.clone();
         let mut output_temp = vec![0.0; 8];
 
@@ -43,7 +46,7 @@ impl Haar1D {
         output
     }
 
-    pub fn inverse(&mut self) -> Vec<f64> {
+    fn inverse(&self) -> Vec<f64> {
         let mut output = self.input.clone();
         let mut length = 2;
 

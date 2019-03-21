@@ -3,6 +3,13 @@ pub enum TransformDirection {
     Inverse
 }
 
+
+//todo maybe think of a better name that isn't so similar to the enum TransformDirection
+pub trait TransformDirections {
+    fn forward(&self) -> Vec<f64>;
+    fn inverse(&self) -> Vec<f64>;
+}
+
 #[macro_export]
 macro_rules! discrete_transform {
     ($transform: ident, $input: ident, $direction: ident) => {

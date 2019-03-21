@@ -1,6 +1,7 @@
 extern crate discrete_transforms;
 
 use discrete_transforms::haar_1d::*;
+use discrete_transforms::util::TransformDirections;
 
 #[test]
 fn haar_1d_forward_test() {
