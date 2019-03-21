@@ -1,3 +1,5 @@
+# All of this is wildly out of date, needs to be rewritten.
+
 `use discrete_transforms::*`
 
 1D DCT 
