@@ -1,6 +1,6 @@
 [package]
 name = "discrete_transforms"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["hgallagher1993 <hgallagher1993@gmail.com>"]
 description = "Library for Discrete Transforms"
 license = "MIT"
