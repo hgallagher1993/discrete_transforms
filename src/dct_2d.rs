@@ -2,6 +2,7 @@ use dct_1d::*;
 use util::*;
 use itertools::Itertools;
 
+#[derive(Debug)]
 pub struct Dct2D {
     input: Vec<f64>
 }

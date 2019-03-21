@@ -1,5 +1,6 @@
 use std::f64;
 
+#[derive(Debug)]
 pub struct Haar1D {
     input: Vec<f64>
 }

@@ -1,7 +1,7 @@
 use std::f64;
 use num_traits::float::Float;
-use std::fmt::Debug;
 
+#[derive(Debug)]
 pub struct Dct1D {
     input: Vec<f64>
 }

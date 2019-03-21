@@ -28,7 +28,6 @@ fn haar_2d_forward_test() {
 
     let forward = haar_2d.forward();
 
-
     assert_eq!(forward, expected);
 }
 

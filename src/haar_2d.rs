@@ -2,6 +2,7 @@ use haar_1d::*;
 use util::*;
 use itertools::Itertools;
 
+#[derive(Debug)]
 pub struct Haar2D {
     input: Vec<f64>
 }
