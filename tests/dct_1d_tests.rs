@@ -9,7 +9,7 @@ fn dct_1d_forward_test() {
                         -2.080834053102315, -0.3535533905932624, -0.4669834002898554,
                         -0.3690851952774956, -0.018709851025652924];
 
-    let mut dct_1d = Dct1d::new();
+    let mut dct_1d = Dct1D::new();
 
     dct_1d.set_input(input);
 
@@ -25,7 +25,7 @@ fn dct_1d_inverse_test() {
                      -0.3690851952774956, -0.018709851025652924];
     let expected = vec![139.0, 144.0, 149.0, 153.0, 155.0, 155.0, 155.0, 155.0];
 
-    let mut dct_1d = Dct1d::new();
+    let mut dct_1d = Dct1D::new();
 
     dct_1d.set_input(input);
 

@@ -24,7 +24,7 @@ impl Haar2D {
 
         let direction = TransformDirection::Forward;
 
-        let output = discrete_transform!(Haar1d, input, direction);
+        let output = discrete_transform!(Haar1D, input, direction);
 
         output
     }
@@ -34,7 +34,7 @@ impl Haar2D {
 
         let direction = TransformDirection::Inverse;
 
-        let output = discrete_transform!(Haar1d, input, direction);
+        let output = discrete_transform!(Haar1D, input, direction);
 
         output
     }

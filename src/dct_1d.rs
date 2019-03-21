@@ -2,13 +2,13 @@ use std::f64;
 use num_traits::float::Float;
 use std::fmt::Debug;
 
-pub struct Dct1d {
+pub struct Dct1D {
     input: Vec<f64>
 }
 
-impl Dct1d {
-    pub fn new() -> Dct1d {
-        Dct1d {
+impl Dct1D {
+    pub fn new() -> Dct1D {
+        Dct1D {
             input: vec![]
         }
     }

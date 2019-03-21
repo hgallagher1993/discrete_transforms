@@ -1,12 +1,12 @@
 use std::f64;
 
-pub struct Haar1d {
+pub struct Haar1D {
     input: Vec<f64>
 }
 
-impl Haar1d {
-    pub fn new() -> Haar1d {
-        Haar1d {
+impl Haar1D {
+    pub fn new() -> Haar1D {
+        Haar1D {
             input: vec![]
         }
     }
